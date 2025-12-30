@@ -1,0 +1,189 @@
+/* --- Base Styles --- */
+:root {
+    --bg-color: #0a0a0a;     /* Deep Black/Grey */
+    --text-color: #ffffff;   /* Pure White */
+    --accent: #d4af37;       /* Gold for the Crooner vibe */
+    --grey: #888888;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* --- Navigation --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.9), transparent);
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+.highlight { color: var(--accent); }
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.nav-links a:hover { color: var(--accent); }
+
+.menu-toggle { display: none; }
+
+/* --- Hero Section --- */
+.hero {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 60px;
+    position: relative;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif; /* The "Classy" font */
+    font-size: 5rem;
+    line-height: 1.1;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--grey);
+    letter-spacing: 1px;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--grey);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+.line { width: 40px; height: 1px; background: var(--grey); }
+
+/* --- Gallery Grid (The Ars Thanea Look) --- */
+.gallery {
+    display: grid;
+    /* Responsive Masonry-style Grid */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    padding: 20px 60px 100px 60px;
+}
+
+.card {
+    position: relative;
+    cursor: pointer;
+    group: hover;
+}
+
+.image-wrapper {
+    width: 100%;
+    height: 500px; /* Fixed height for uniformity */
+    overflow: hidden;
+    position: relative;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: grayscale(20%); /* Artistic touch */
+}
+
+/* Hover Effect: Zoom In */
+.card:hover .image-wrapper img {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card:hover .overlay { opacity: 1; }
+
+.play-btn {
+    background: var(--text-color);
+    border: none;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--bg-color);
+    transition: transform 0.2s;
+}
+.play-btn:hover { transform: scale(1.1); }
+
+.card-info {
+    margin-top: 15px;
+}
+
+.card-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.card-info p {
+    color: var(--grey);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Footer --- */
+footer {
+    padding: 40px 60px;
+    border-top: 1px solid #222;
+    color: var(--grey);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .navbar, .hero, .gallery { padding: 20px; }
+    .hero-content h1 { font-size: 3rem; }
+    .gallery { grid-template-columns: 1fr; }
+    .nav-links { display: none; } /* Hide menu on mobile for simplicity */
+}
