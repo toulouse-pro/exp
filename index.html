@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>École Maternelle Matabiau - Site d'Information Parents</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #E63946; /* Matabiau Red/Brick */
+            --secondary-color: #457B9D; /* Toulouse Blue */
+            --accent-color: #A8DADC;
+            --background-light: #F1FAEE;
+            --text-dark: #1D3557;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--background-light);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--white) !important;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        /* Hero Section */
+        header {
+            background: linear-gradient(rgba(29, 53, 87, 0.7), rgba(29, 53, 87, 0.7)), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            max-width: 600px;
+        }
+
+        /* Alert Banner */
+        .alert-banner {
+            background-color: #ff9f1c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 10%;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--white);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Info Cards Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--secondary-color);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Schedule Table */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: var(--white);
+        }
+
+        .schedule-table th, .schedule-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .schedule-table th {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .schedule-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Map */
+        .map-responsive {
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
+        }
+        .map-responsive iframe {
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 10%;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .nav-links { display: none; } /* Simplified for single file example */
+            .logo { font-size: 1.2rem; }
+            section { padding: 2rem 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="alert-banner">
+        <i class="fas fa-info-circle"></i> Inscriptions pour la rentrée de septembre : Dossier à déposer avant le 31 mai.
+    </div>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-school"></i> Maternelle Matabiau
+        </div>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#infos">Horaires & Infos</a></li>
+            <li><a href="#alae">Cantine & ALAE</a></li>
+            <li><a href="#contact" class="cta-button">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="accueil">
+        <h1>École Maternelle Matabiau</h1>
+        <p>Bienveillance, Apprentissage et Épanouissement au cœur de Toulouse.</p>
+    </header>
+
+    <section id="presentation">
+        <h2>L'École</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3><i class="fas fa-child"></i> Notre Mission</h3>
+                <p>Située au cœur du quartier Matabiau/Chalets, notre école accueille les enfants de la Petite Section à la Grande Section. Nous suivons les programmes de l'Éducation Nationale en mettant l'accent sur l'autonomie et le vivre-ensemble.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-users"></i> L'Équipe</h3>
+                <p>Une équipe pédagogique dévouée, accompagnée par des ATSEM (Agents Territoriaux Spécialisés des Écoles Maternelles) pour assurer le bien-être et l'hygiène des enfants au quotidien.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-building"></i> Le Quartier</h3>
+                <p>Une école de proximité, idéalement située au <strong>20 Rue Matabiau</strong>, à quelques minutes de la place Jeanne d'Arc et des transports en commun.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="infos">
+        <h2>Infos Pratiques</h2>
+        <div class="grid-container">
+            <div class="card" style="grid-column: span 2;">
+                <h3><i class="far fa-clock"></i> Rythme Scolaire (Semaine type)</h3>
+                <p><em>Les portes ouvrent 10 minutes avant le début de la classe.</em></p>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Jour</th>
+                            <th>Matin</th>
+                            <th>Midi (Cantine)</th>
+                            <th>Après-Midi</th>
+                            <th>ALAE (Soir)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lundi</td>
+                            <td>8h30 - 11h30</td>
+                            <td>11h30 - 13h30</td>
+                            <td>13h30 - 16h00</td>
+                            <td>16h00 - 18h30</td>
+                        </tr>
+                        <tr>
+                            <td>Mardi</td>
+                            <td>8h30 - 11h30</td>
+                            <td>11h30 - 13h30</td>
+                            <td>13h30 - 16h00</td>
+                            <td>16h00 - 18h30</td>
+                        </tr>
+                        <tr>
+                            <td>Jeudi</td>
+                            <td>8h30 - 11h30</td>
+                            <td>11h30 - 13h30</td>
+                            <td>13h30 - 16h00</td>
+                            <td>16h00 - 18h30</td>
+                        </tr>
+                        <tr>
+                            <td>Vendredi</td>
+                            <td>8h30 - 11h30</td>
+                            <td>11h30 - 13h30</td>
+                            <td>13h30 - 16h00</td>
+                            <td>16h00 - 18h30</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 10px; font-size: 0.9em; color: #666;">*Le Mercredi est généralement géré par le centre de loisirs (ALSH) - Inscription requise.</p>
+            </div>
+            
+            <div class="card">
+                <h3><i class="fas fa-file-signature"></i> Inscriptions</h3>
+                <p>Les inscriptions administratives se font auprès de la Mairie de Toulouse, puis l'admission pédagogique se fait à l'école.</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Justificatif de domicile</li>
+                    <li>Livret de famille</li>
+                    <li>Carnet de santé (vaccins)</li>
+                </ul>
+                <br>
+                <a href="https://www.toulouse.fr/web/education/inscriptions-scolaires" target="_blank" style="color: var(--primary-color); font-weight: bold;">Site Mairie de Toulouse &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="alae" style="background-color: var(--background-light);">
+        <h2>Cantine & ALAE</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3><i class="fas fa-utensils"></i> Restauration Scolaire</h3>
+                <p>Les repas sont préparés par la Cuisine Centrale de Toulouse. Les menus sont équilibrés et incluent une option végétarienne quotidienne.</p>
+                <br>
+                <a href="https://www.toulouse.fr/web/education/restauration/menus" target="_blank" class="cta-button">Voir les Menus de la semaine</a>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-shapes"></i> Le CLAE (ALAE)</h3>
+                <p>L'Accueil de Loisirs Associé à l'École prend le relais avant et après la classe, ainsi que pendant la pause méridienne. Les animateurs proposent des activités ludiques et éducatives.</p>
+                <p><strong>Horaires Garderie Matin:</strong> 7h30 - 8h20</p>
+                <p><strong>Horaires Soir:</strong> 16h00 - 18h30</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Nous Contacter</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Coordonnées</h3>
+                <p><strong><i class="fas fa-map-marker-alt"></i> Adresse :</strong><br>
+                20 Rue Matabiau<br>
+                31000 Toulouse, France</p>
+                <br>
+                <p><strong><i class="fas fa-phone"></i> Téléphone :</strong><br>
+                <a href="tel:+33561629323" style="color: var(--text-dark); text-decoration: none; font-size: 1.2rem;">05 61 62 93 23</a></p>
+                <br>
+                <p><strong><i class="fas fa-envelope"></i> Email :</strong><br>
+                ce.0311431k@ac-toulouse.fr</p>
+            </div>
+            <div class="card" style="padding: 0; border: none; overflow: hidden;">
+                <div class="map-responsive">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.850422998875!2d1.446862315503657!3d43.60965897912284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aebb68b1a59a7f%3A0x6b49e1f8b1a3d3c8!2s20%20Rue%20Matabiau%2C%2031000%20Toulouse!5e0!3m2!1sfr!2sfr!4v1620000000000!5m2!1sfr!2sfr" width="600" height="450" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 École Maternelle Matabiau - Site d'information non-officiel à but démonstratif.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">
+            <a href="https://www.toulouse.fr" target="_blank">Mairie de Toulouse</a> | 
+            <a href="https://www.education.gouv.fr/" target="_blank">Éducation Nationale</a> |
+            <a href="#">Mentions Légales</a>
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
